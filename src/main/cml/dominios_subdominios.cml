@@ -1,0 +1,123 @@
+Domain GestionImagenesMedicas {
+  domainVisionStatement = "Garantizar la captura, anonimización, almacenamiento y clasificación eficiente de imágenes médicas, permitiendo un flujo de datos seguro y estructurado."
+
+  Subdomain IngestaDatos {
+    type = CORE_DOMAIN
+    domainVisionStatement = "Automatización y estandarización de almacenado de imágenes desde múltiples fuentes."
+  }
+
+  Subdomain AnonimizacionDatos {
+    type = CORE_DOMAIN
+    domainVisionStatement = "Garantizar la privacidad y cumplimiento de regulaciones eliminando información sensible."
+  }
+
+  Subdomain ClasificacionEnriquecimientoDatos {
+    type = CORE_DOMAIN
+    domainVisionStatement = "Estructuración y mejora de datos para optimizar su utilidad en el entrenamiento de modelos IA."
+  }
+
+  Subdomain ProcesamientoDatos {
+    type = CORE_DOMAIN
+    domainVisionStatement = "Limpieza, transformación y validación de datos para generar conjuntos listos para el análisis."
+  }
+
+  Subdomain DistribucionDatos {
+    type = CORE_DOMAIN
+    domainVisionStatement = "Envío de datos anonimizados y enriquecidos a los clientes o sistemas designados de manera eficiente."
+  }
+}
+
+Domain EntrenamientoModelosIA {
+  domainVisionStatement = "Transformar los datos anonimizados en conocimiento accionable mediante modelos de inteligencia artificial de alta precisión."
+
+  Subdomain PreparacionDatasets {
+    type = CORE_DOMAIN
+    domainVisionStatement = "Creación de conjuntos de datos balanceados y relevantes para maximizar la eficacia del modelo."
+  }
+
+  Subdomain AmbientesEntrenamiento {
+    type = SUPPORTING_DOMAIN
+    domainVisionStatement = "Provisión de entornos computacionales especializados para ejecutar los modelos."
+  }
+
+  Subdomain SoporteDesarrolladoresIA {
+    type = SUPPORTING_DOMAIN
+    domainVisionStatement = "Servicios y herramientas para facilitar el desarrollo y la implementación de soluciones de IA."
+  }
+}
+
+Domain GestionSociosClientes {
+  domainVisionStatement = "Construir relaciones estratégicas con Proveedores de Datos y Consumidores de Datos, garantizando confiabilidad y rentabilidad"
+
+  Subdomain DataPartnership {
+    type = SUPPORTING_DOMAIN
+    domainVisionStatement = "Colaboración con proveedores para acceder a datos mientras se les ofrece valor mediante incentivos."
+  }
+
+  Subdomain GestionClientes {
+    type = SUPPORTING_DOMAIN
+    domainVisionStatement = "Administración de relaciones y comunicaciones efectivas con los clientes."
+  }
+}
+
+Domain SeguridadCumplimientoNormativo {
+  domainVisionStatement = "Asegurar que todas las operaciones cumplen con las regulaciones locales e internacionales de privacidad y seguridad de datos médicos."
+
+  Subdomain CumplimientoNormativo {
+    type = SUPPORTING_DOMAIN
+    domainVisionStatement = "Asegurar que las operaciones y datos cumplen con las regulaciones locales e internacionales."
+  }
+
+  Subdomain SeguridadDatos {
+    type = SUPPORTING_DOMAIN
+    domainVisionStatement = "Protección de datos contra accesos no autorizados y posibles vulnerabilidades."
+  }
+
+  Subdomain GestionRiesgos {
+    type = SUPPORTING_DOMAIN
+    domainVisionStatement = "Identificación y mitigación de posibles riesgos asociados con datos y operaciones."
+  }
+}
+
+Domain ExpansionGlobalOperaciones {
+  domainVisionStatement = "Liderar la expansión estratégica hacia nuevas regiones, optimizando la infraestructura y los procesos para asegurar escalabilidad y eficiencia."
+
+  Subdomain ExpancionNuevasRegiones {
+    type = SUPPORTING_DOMAIN
+    domainVisionStatement = "Adaptación de servicios y operaciones a las necesidades de nuevas regiones internacionales."
+  }
+
+  Subdomain GestionInfraestructura {
+    type = SUPPORTING_DOMAIN
+    domainVisionStatement = "Optimización de los recursos tecnológicos para asegurar alta disponibilidad y escalabilidad."
+  }
+
+  Subdomain IntegracionExternos {
+    type = GENERIC_SUBDOMAIN
+    domainVisionStatement = "Interoperabilidad con otros sistemas y plataformas de gestión de datos medicos"
+  }
+
+  Subdomain GestionVentas {
+    type = GENERIC_SUBDOMAIN
+    domainVisionStatement = "Facilitar la adquisicion y acceso de imágenes médicas y diagnósticos anonimizados"
+  }
+
+  Subdomain AutomatizacionProcesos {
+    type = SUPPORTING_DOMAIN
+    domainVisionStatement = "Implementación de flujos automatizados para mejorar la eficiencia operativa y reducir costos."
+  }
+}
+
+Domain InteligenciaNegociosAnalisis {
+  domainVisionStatement = "Proveer información de valor mediante el procesamiento de grandes volúmenes de datos para el análisis y toma de decisiones estratégicas del negocio."
+
+  Subdomain AnalisisDatos {
+    type = GENERIC_SUBDOMAIN
+    domainVisionStatement = "Implementación de flujos automatizados para mejorar la eficiencia operativa y reducir costos."
+  }
+
+  Subdomain OptimizacionProcesos {
+    type = GENERIC_SUBDOMAIN
+    domainVisionStatement = "Mejora continua en los flujos operativos para maximizar la productividad y minimizar errores."
+  }
+}
