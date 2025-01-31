@@ -63,11 +63,6 @@ Domain GestionSociosClientes {
 Domain SeguridadCumplimientoNormativo {
   domainVisionStatement = "Asegurar que todas las operaciones cumplen con las regulaciones locales e internacionales de privacidad y seguridad de datos médicos."
 
-  Subdomain CumplimientoNormativo {
-    type = SUPPORTING_DOMAIN
-    domainVisionStatement = "Asegurar que las operaciones y datos cumplen con las regulaciones locales e internacionales."
-  }
-
   Subdomain SeguridadDatos {
     type = SUPPORTING_DOMAIN
     domainVisionStatement = "Protección de datos contra accesos no autorizados y posibles vulnerabilidades."
@@ -82,29 +77,14 @@ Domain SeguridadCumplimientoNormativo {
 Domain ExpansionGlobalOperaciones {
   domainVisionStatement = "Liderar la expansión estratégica hacia nuevas regiones, optimizando la infraestructura y los procesos para asegurar escalabilidad y eficiencia."
 
-  Subdomain ExpansionNuevasRegiones {
-    type = SUPPORTING_DOMAIN
-    domainVisionStatement = "Adaptación de servicios y operaciones a las necesidades de nuevas regiones internacionales."
-  }
-
   Subdomain GestionInfraestructura {
     type = SUPPORTING_DOMAIN
     domainVisionStatement = "Optimización de los recursos tecnológicos para asegurar alta disponibilidad y escalabilidad."
   }
 
-  Subdomain IntegracionExternos {
-    type = GENERIC_SUBDOMAIN
-    domainVisionStatement = "Interoperabilidad con otros sistemas y plataformas de gestión de datos medicos"
-  }
-
   Subdomain GestionVentas {
     type = GENERIC_SUBDOMAIN
     domainVisionStatement = "Facilitar la adquisicion y acceso de imágenes médicas y diagnósticos anonimizados"
-  }
-
-  Subdomain AutomatizacionProcesos {
-    type = SUPPORTING_DOMAIN
-    domainVisionStatement = "Implementación de flujos automatizados para mejorar la eficiencia operativa y reducir costos."
   }
 }
 
@@ -115,9 +95,41 @@ Domain InteligenciaNegociosAnalisis {
     type = GENERIC_SUBDOMAIN
     domainVisionStatement = "Generación de información para toma de decisiones estrategicas que impulsen el crecimiento de la compañia."
   }
+}
 
-  Subdomain OptimizacionProcesos {
-    type = GENERIC_SUBDOMAIN
-    domainVisionStatement = "Mejora continua en los flujos operativos para maximizar la productividad y minimizar errores."
-  }
+
+BoundedContext ContextoManejoDatos implements IngestaDatos, AnonimizacionDatos, ClasificacionEnriquecimientoDatos, DistribucionDatos {
+  domainVisionStatement = "Contexto encargado de la adquisición de datos de forma eficiente, realizando una anonimización rigurosa, clasificación precisa y enriquecimiento inteligente para su distribución."
+}
+
+BoundedContext ContextoInvestigacionDesarrollo implements ProcesamientoDatos, PreparacionDatasets, AmbientesEntrenamiento, SoporteDesarrolladoresIA {
+  domainVisionStatement = "Contexto encargado de fomentar la innovación en la investigación mediante el uso de inteligencia artificial, proporcionando herramientas y recursos para el procesamiento eficiente de datos, la preparación avanzada de datasets asi como el apoyo integro a los desarrolladores IA."
+}
+
+BoundedContext ContextoClientes implements DataPartnership, GestionVentas, GestionClientes {
+  domainVisionStatement = "Contexto encargado de analizar y establecer procesos que ayuden a la optimización en la gestión de ventas y la atención al cliente para ofrecer experiencias personalizadas."
+}
+
+BoundedContext ContextoTecnologia implements GestionInfraestructura, SeguridadDatos, GestionRiesgos {
+  domainVisionStatement = "Contexto encargado proveer y garantizar una infraestructura tecnológica sólida y segura, protegiendo los datos y minimizando los riesgos."
+}
+
+BoundedContext ContextoInteligenciaNegocios implements AnalisisDatos {
+  domainVisionStatement = "Contexto encargado de transformar los datos en información estratégica y procesable, permitiendo a la organizacion realizar tomas de decisiones que ayuden a optimizar procesos y descubrir nuevas oportunidades de negocio."
+}
+
+ContextMap SaludTechDeLosAlpes {
+    state = AS_IS
+
+    contains ContextoManejoDatos
+    contains ContextoInvestigacionDesarrollo
+    contains ContextoClientes
+    contains ContextoTecnologia
+    contains ContextoInteligenciaNegocios
+
+    ContextoManejoDatos [SK] <-> [SK] ContextoInvestigacionDesarrollo
+    ContextoManejoDatos [U] -> [D] ContextoClientes
+    ContextoManejoDatos [U] -> [D, ACL] ContextoInteligenciaNegocios
+    ContextoManejoDatos [P] <-> [P] ContextoTecnologia
+    ContextoInvestigacionDesarrollo [P] <-> [P] ContextoTecnologia
 }

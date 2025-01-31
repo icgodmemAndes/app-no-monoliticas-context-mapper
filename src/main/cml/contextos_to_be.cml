@@ -121,3 +121,77 @@ Domain InteligenciaNegociosAnalisis {
     domainVisionStatement = "Mejora continua en los flujos operativos para maximizar la productividad y minimizar errores."
   }
 }
+
+
+BoundedContext ContextoRegistroDatos implements IngestaDatos, AnonimizacionDatos {
+  domainVisionStatement = "Contexto encargado de la captura y eliminación de datos sensibles de las imagenes médicas y metadatos provenientes de los diferentes puntos"
+}
+
+BoundedContext ContextoAlmacenadoDatos implements ClasificacionEnriquecimientoDatos, ProcesamientoDatos, DistribucionDatos {
+  domainVisionStatement = "Contexto responables de la gestión del ciclo completo de datos procesados, desde la organización de datos, asignación de token, enriquecimiento y almacenamiento."
+}
+
+BoundedContext ContextoEntrenamientoIA implements PreparacionDatasets, AmbientesEntrenamiento, SoporteDesarrolladoresIA {
+  domainVisionStatement = "Contexto encargado de proporcionar conjuntos de datos balanceados y entornos especializados para entrar modelos de IA"
+}
+
+BoundedContext ContextoClientes implements DataPartnership, GestionClientes {
+  domainVisionStatement = "Contexto enfocado en gestionar las relaciones con los socios, clientes y proveedores para que puedan recibir procesar y recibir datos confiables y eficientes"
+}
+
+BoundedContext ContextoNormatividad implements CumplimientoNormativo, SeguridadDatos, GestionRiesgos {
+  domainVisionStatement = "Contexto enfocado en asegurar que las operaciones cumplan las regulaciones locales e internacionales de privacidad y seguridad de datos, mientras se identifican, evaluan y mitigan los riesgos con los datos y operaciones"
+}
+
+BoundedContext ContextoExpansion implements ExpansionNuevasRegiones {
+  domainVisionStatement = "Contexto orientado a la adaptación de los servicios y operaciones a las necesidades de mercados internacionales, garantizando que la infraestructura y procesos estén optimizados para soportar el crecimiento global"
+}
+
+BoundedContext ContextoInfraestructura implements GestionInfraestructura {
+  domainVisionStatement = "Este contexto se enfoca al manejo y optimización de la infraestructura tecnológica para que la misma este disponible, sea escalable y eficiente para soportar las operaciones del negocio"
+}
+
+BoundedContext ContextoIntegracion implements IntegracionExternos {
+  domainVisionStatement = "Contexto encargado de la integración de datos con clientes externos, facilitando la interoperabilidad y sincronización eficiente de información entre sistemas."
+}
+
+BoundedContext ContextoVentas implements GestionVentas  {
+  domainVisionStatement = "Contexto responsable de la gestión integral del proceso de ventas, desde la generación de oportunidades hasta la formalización de transacciones, asegurando eficiencia y trazabilidad."
+}
+
+BoundedContext ContextoInteligenciaNegocios implements AutomatizacionProcesos, AnalisisDatos, OptimizacionProcesos {
+  domainVisionStatement = "Contexto enfocado en la automatización, optimización y análisis avanzado de datos para mejorar la toma de decisiones y la eficiencia operativa en el negocio."
+}
+
+ContextMap SaludTechDeLosAlpes {
+    state = TO_BE
+
+    contains ContextoRegistroDatos
+    contains ContextoAlmacenadoDatos
+    contains ContextoEntrenamientoIA
+    contains ContextoClientes
+    contains ContextoNormatividad
+    contains ContextoExpansion
+    contains ContextoInfraestructura
+    contains ContextoIntegracion
+    contains ContextoVentas
+    contains ContextoInteligenciaNegocios
+
+    ContextoRegistroDatos [SK] <-> [SK] ContextoAlmacenadoDatos
+    ContextoRegistroDatos [U] -> [D] ContextoEntrenamientoIA
+    ContextoAlmacenadoDatos [U] -> [D] ContextoEntrenamientoIA
+    ContextoClientes [D] <- [U, OHS] ContextoAlmacenadoDatos
+    ContextoNormatividad [P] <-> [P] ContextoRegistroDatos
+    ContextoNormatividad [P] <-> [P] ContextoAlmacenadoDatos
+    ContextoNormatividad [P] <-> [P] ContextoClientes
+    ContextoNormatividad [U] -> [D, CF] ContextoExpansion
+    ContextoVentas [D, CF] <- [U] ContextoClientes
+    ContextoInteligenciaNegocios [D, ACL] <- [U] ContextoAlmacenadoDatos
+    ContextoInteligenciaNegocios [D, ACL] <- [U] ContextoClientes
+    ContextoIntegracion [P] <-> [P] ContextoInfraestructura
+    ContextoEntrenamientoIA [P] <-> [P] ContextoInfraestructura
+    ContextoExpansion [P] <-> [P] ContextoInfraestructura
+    ContextoRegistroDatos [P] <-> [P] ContextoInfraestructura
+    ContextoAlmacenadoDatos [P] <-> [P] ContextoInfraestructura
+    ContextoIntegracion [P] <-> [P] ContextoExpansion
+}
